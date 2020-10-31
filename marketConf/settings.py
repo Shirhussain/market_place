@@ -45,7 +45,7 @@ ROOT_URLCONF = 'marketConf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,4 +108,31 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+
+"""This line tells Django to append static to the base url
+(in our case localhost:8000) when searching for static files. 
+In Django, you could have a static folder almost anywhere you want. 
+You can even have more than one static folder e.g. one in each app.
+"""
 STATIC_URL = '/static/'
+
+#The STATICFILES_DIRS tuple tells Django where to look for static files that are not tied to a particular app. 
+#In this case, we just told Django to also look for static files in a folder called static in our root folder, 
+#not just in our apps.
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+
+"""
+Django also provides a mechanism for collecting static files into one place so that they can be served easily. 
+Using the collectstatic command, Django looks for all static files in your apps and collects them wherever you told it to,
+i.e. the STATIC_ROOT. In our case, we are telling Django that when we run python manage.py collectstatic, 
+gather all static files into a folder called staticfiles in our project root directory. 
+This feature is very handy for serving static files, especially in production settings.
+"""
+STATIC_ROOT = BASE_DIR / 'static_root'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
