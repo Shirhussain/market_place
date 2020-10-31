@@ -1,11 +1,20 @@
 from django.shortcuts import render, get_object_or_404
-from . models import Product, ProductImage
+from django.core.paginator import Paginator
+from django.db.models import  Count
+from . models import Product, ProductImage, Category
 
 def product_list(request):
     products = Product.objects.all()
+    categories = Category.objects.annotate(total_products = Count('product') )
 
+    paginator = Paginator(products, 10)
+
+    page_number = request.GET.get('page')
+    products = paginator.get_page(page_number)
+    
     context = {
-        'products': products
+        'products': products,
+        'categories': categories
     }
 
     return render(request, "market/product_list.html", context)
