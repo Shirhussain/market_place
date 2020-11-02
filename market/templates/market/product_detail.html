@@ -21,7 +21,7 @@
 			<div class="product-desc">
 				<div class="col-md-7 product-view">
 					<h2>{{product.name}}</h2>
-					<p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">city</a>| Added at {{product.created|timesince}} ago, Ad ID: {{product.id}}</p>
+					<p> <i class="glyphicon glyphicon-map-marker"></i><a href="#">state</a>, <a href="#">{{product.city}}</a>| Added at {{product.created|timesince}} ago, Ad ID: {{product.id}}</p>
 					
 					<div class="flexslider">
 						<ul class="slides">
@@ -50,8 +50,7 @@
 					<!-- //FlexSlider -->
 					<div class="product-details">
 						<h4>Brand : <a href="#">{{product.brand}}</a></h4>
-						<h4>Views : <strong>150</strong></h4>
-						<p><strong>Display </strong>: 1.5 inch HD LCD Touch Screen</p>
+						<h4>Views : <strong>{{product.view_count}}</strong></h4>
 						<p><strong>Summary</strong> : {{product.description}}</p>
 					
 					</div>
@@ -74,24 +73,6 @@
 							<div class="clearfix"></div>
 						</div>
 					</div>
-					<div class="interested text-center">
-						<h4>Interested in this Ad?<small> Contact the Seller!</small></h4>
-						<p><i class="glyphicon glyphicon-earphone"></i>00-85-9875462655</p>
-					</div>
-						<div class="tips">
-						<h4>Safety Tips for Buyers</h4>
-							<ol>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-								<li><a href="#">Contrary to popular belief.</a></li>
-							</ol>
-						</div>
 				</div>
 			<div class="clearfix"></div>
 			</div>

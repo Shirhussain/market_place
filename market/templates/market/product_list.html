@@ -87,7 +87,7 @@
 				</ul>
 			</div>
 			<ol class="breadcrumb" style="margin-bottom: 5px;">
-				<li><a href="#">Home</a></li>
+				<li><a href="{% url 'market:home' %}">Home</a></li>
 				<li class="active"><a href="{% url 'market:product_list' %}">All Ads</a></li>
 				{% if category %}
 					<li class="active">{{category}}</li>
@@ -168,7 +168,7 @@
 										</section>
 										<section class="list-right">
 										<span class="date">{{product.created|timesince}}</span>
-										<span class="cityname">City name</span>
+										<span class="cityname">{{product.city}}</span>
 										</section>
 										<div class="clearfix"></div>
 										</li> 

@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import  User
 from django.utils import timezone
 from django.utils.text import  slugify
+from django.urls import  reverse
+
+
+class ProductView(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
 
 class Product(models.Model):
     
@@ -17,6 +26,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='Product_main_image/%Y/', blank=True, null=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     brand = models.ForeignKey('Brand', on_delete=models.SET_NULL, null=True )
+    city  = models.CharField(max_length=50)
     # when you set_null so apply null=True as well
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
     condation = models.CharField(max_length=4, choices=CONDATION_TYPE)
@@ -31,6 +41,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('market:product_detail', args=(self.slug,))
+
+    @property
+    def view_count(self):
+        return ProductView.objects.filter(product=self).count()
+
 
 
 class Category(models.Model):
@@ -72,3 +90,4 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return self.product.name
+
